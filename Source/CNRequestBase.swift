@@ -21,6 +21,9 @@ public class CNRequestBase {
     public var method : HTTPMethod = .get
     public var encoding : ParameterEncoding = JSONEncoding.default
     
+    public init() {
+        
+    }
     
     public func fetch(){
         CNNetworkManager.default.start(request: self)
