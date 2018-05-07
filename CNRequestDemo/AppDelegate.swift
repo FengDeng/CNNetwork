@@ -18,6 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
+    
+    func test1(){
+        class B :Codable{
+            var times = 8
+            var sex = "男"
+        }
+        let base = CNRequestObject<B>()
+        base.subscribe(success: { (b) in
+            print(b)
+        }) { (err) in
+            print(err)
+        }.disposed(by: self.rx.dispose)
+        base.fetch()
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

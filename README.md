@@ -1,12 +1,14 @@
 # CNNetwork
 Base on Alamofire &amp; RxSwift
 
+
+
 ## Pods
 pod 'CNNetwork', :git => 'https://github.com/FengDeng/CNNetwork.git', :branch => 'master'
 
 ## Demo
 
-1. config CNNetworkManager
+### config CNNetworkManager
 
     ```
             CNNetworkManager.default.host = "http://****.com"
@@ -73,8 +75,33 @@ pod 'CNNetwork', :git => 'https://github.com/FengDeng/CNNetwork.git', :branch =>
     ```
 
 
-2. init request
+### init request
 
-  ```
-  
-  ```
+  1. 单个模型请求
+    
+    class B :Codable{
+            var times = 8
+            var sex = "男"
+        }
+        let base = CNRequestObject<B>()
+        base.subscribe(success: { (b) in
+            print(b)
+        }) { (err) in
+            print(err)
+        }.disposed(by: self.rx.dispose)
+        base.fetch()
+
+  2. 数组模型请求
+
+    class B :Codable{
+            var times = 8
+            var sex = "男"
+        }
+        let base = CNRequestArray<B>()
+        base.subscribe(success: { (bs) in
+            print(bs)
+        }) { (err) in
+            print(err)
+        }.disposed(by: self.rx.dispose)
+        base.fetchFirst()
+        base.fetchNext()
