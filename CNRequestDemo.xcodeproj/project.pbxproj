@@ -13,9 +13,9 @@
 		9FA0997420A0329800481CF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FA0997220A0329800481CF1 /* Main.storyboard */; };
 		9FA0997620A0329800481CF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FA0997520A0329800481CF1 /* Assets.xcassets */; };
 		9FA0997920A0329800481CF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FA0997720A0329800481CF1 /* LaunchScreen.storyboard */; };
-		9FA0998420A032D400481CF1 /* CNRequestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA0998120A032D400481CF1 /* CNRequestBase.swift */; };
-		9FA0998520A032D400481CF1 /* CNRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA0998220A032D400481CF1 /* CNRequest.swift */; };
-		9FA0998620A032D400481CF1 /* CNNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA0998320A032D400481CF1 /* CNNetworkManager.swift */; };
+		9FA0998B20A038CD00481CF1 /* CNRequestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA0998820A038CD00481CF1 /* CNRequestBase.swift */; };
+		9FA0998C20A038CD00481CF1 /* CNNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA0998920A038CD00481CF1 /* CNNetworkManager.swift */; };
+		9FA0998D20A038CD00481CF1 /* CNRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA0998A20A038CD00481CF1 /* CNRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,9 +28,9 @@
 		9FA0997520A0329800481CF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FA0997820A0329800481CF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9FA0997A20A0329800481CF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9FA0998120A032D400481CF1 /* CNRequestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRequestBase.swift; sourceTree = "<group>"; };
-		9FA0998220A032D400481CF1 /* CNRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRequest.swift; sourceTree = "<group>"; };
-		9FA0998320A032D400481CF1 /* CNNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNNetworkManager.swift; sourceTree = "<group>"; };
+		9FA0998820A038CD00481CF1 /* CNRequestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRequestBase.swift; sourceTree = "<group>"; };
+		9FA0998920A038CD00481CF1 /* CNNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNNetworkManager.swift; sourceTree = "<group>"; };
+		9FA0998A20A038CD00481CF1 /* CNRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRequest.swift; sourceTree = "<group>"; };
 		BA372BF6183148C0EF0F1AA0 /* Pods-CNRequestDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNRequestDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNRequestDemo/Pods-CNRequestDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,6 +49,7 @@
 		9FA0996220A0329800481CF1 = {
 			isa = PBXGroup;
 			children = (
+				9FA0998720A038CD00481CF1 /* Source */,
 				9FA0996D20A0329800481CF1 /* CNRequestDemo */,
 				9FA0996C20A0329800481CF1 /* Products */,
 				EC02AC64D52DF49251E9A4B4 /* Pods */,
@@ -67,7 +68,6 @@
 		9FA0996D20A0329800481CF1 /* CNRequestDemo */ = {
 			isa = PBXGroup;
 			children = (
-				9FA0998020A032C300481CF1 /* Source */,
 				9FA0996E20A0329800481CF1 /* AppDelegate.swift */,
 				9FA0997020A0329800481CF1 /* ViewController.swift */,
 				9FA0997220A0329800481CF1 /* Main.storyboard */,
@@ -78,12 +78,12 @@
 			path = CNRequestDemo;
 			sourceTree = "<group>";
 		};
-		9FA0998020A032C300481CF1 /* Source */ = {
+		9FA0998720A038CD00481CF1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				9FA0998320A032D400481CF1 /* CNNetworkManager.swift */,
-				9FA0998120A032D400481CF1 /* CNRequestBase.swift */,
-				9FA0998220A032D400481CF1 /* CNRequest.swift */,
+				9FA0998820A038CD00481CF1 /* CNRequestBase.swift */,
+				9FA0998920A038CD00481CF1 /* CNNetworkManager.swift */,
+				9FA0998A20A038CD00481CF1 /* CNRequest.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -220,11 +220,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FA0998620A032D400481CF1 /* CNNetworkManager.swift in Sources */,
-				9FA0998520A032D400481CF1 /* CNRequest.swift in Sources */,
 				9FA0997120A0329800481CF1 /* ViewController.swift in Sources */,
 				9FA0996F20A0329800481CF1 /* AppDelegate.swift in Sources */,
-				9FA0998420A032D400481CF1 /* CNRequestBase.swift in Sources */,
+				9FA0998B20A038CD00481CF1 /* CNRequestBase.swift in Sources */,
+				9FA0998C20A038CD00481CF1 /* CNNetworkManager.swift in Sources */,
+				9FA0998D20A038CD00481CF1 /* CNRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

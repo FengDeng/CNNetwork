@@ -9,33 +9,34 @@
 import Foundation
 import Alamofire
 import RxSwift
-class CNNetworkManager{
+
+public class CNNetworkManager{
     
     //handle request
     
     //request
-    var requestShouldSend:((_ request:CNRequestBase)->Bool)?
-    var requestWillSend:((_ request:CNRequestBase)->Void)?
-    var requestDidSend:((_ request:CNRequestBase)->Void)?
+    public var requestShouldSend:((_ request:CNRequestBase)->Bool)?
+    public var requestWillSend:((_ request:CNRequestBase)->Void)?
+    public var requestDidSend:((_ request:CNRequestBase)->Void)?
     
     //error    如果实现了该方法，并且返回了error 则直接解析成错误
-    var requestHandleToError:((_ request:CNRequestBase,_ response:DataResponse<Data>)->NSError?)?
-    var requestReceiveError:((_ request:CNRequestBase,_ error:NSError)->Bool)?//return true 拦截掉错误，request将收不到
+    public var requestHandleToError:((_ request:CNRequestBase,_ response:DataResponse<Data>)->NSError?)?
+    public var requestReceiveError:((_ request:CNRequestBase,_ error:NSError)->Bool)?//return true 拦截掉错误，request将收不到
     
     //data
-    var requestShouldReceiveData:((_ request:CNRequestBase,_ responseData:Data)->Bool)?
-    var requestWillReceiveData:((_ request:CNRequestBase,_ responseData:Data)->Void)?
-    var requestDidReceiveData:((_ request:CNRequestBase,_ responseData:Data)->Void)?
+    public var requestShouldReceiveData:((_ request:CNRequestBase,_ responseData:Data)->Bool)?
+    public var requestWillReceiveData:((_ request:CNRequestBase,_ responseData:Data)->Void)?
+    public var requestDidReceiveData:((_ request:CNRequestBase,_ responseData:Data)->Void)?
     
     //end handle request
     
     
-    static let `default` = CNNetworkManager()
+    public static let `default` = CNNetworkManager()
     
-    let reachabilityManager = NetworkReachabilityManager()
-    let networkChanged = PublishSubject<NetworkReachabilityManager.NetworkReachabilityStatus>.init()
+    public let reachabilityManager = NetworkReachabilityManager()
+    public let networkChanged = PublishSubject<NetworkReachabilityManager.NetworkReachabilityStatus>.init()
     var requests = [CNRequestBase]()
-    let sessionManager : SessionManager
+    public let sessionManager : SessionManager
     private init() {
         //
         let configuration = URLSessionConfiguration.default
@@ -50,7 +51,7 @@ class CNNetworkManager{
     }
     
     //
-    var host = ""
+    public var host = ""
     
     
     func start(request:CNRequestBase){
@@ -114,7 +115,8 @@ class CNNetworkManager{
         self.requestDidSend?(request)
         
     }
-    func cancle(request:CNRequestBase){
+    
+    public func cancle(request:CNRequestBase){
         request.dataRequest?.cancel()
         self.remove(request: request)
     }

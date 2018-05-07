@@ -10,56 +10,56 @@ import Foundation
 import RxSwift
 import Alamofire
 
-class CNRequestBase {
+public class CNRequestBase {
     
-    var dataRequest : DataRequest? = nil
-    var dataResponse : DataResponse<Data>? = nil
+    public internal(set) var dataRequest : DataRequest? = nil
+    public internal(set) var dataResponse : DataResponse<Data>? = nil
     
-    var path : String = ""
-    var headers : HTTPHeaders = [:]
-    var parameters : Parameters = [:]
-    var method : HTTPMethod = .get
-    var encoding : ParameterEncoding = JSONEncoding.default
+    public var path : String = ""
+    public var headers : HTTPHeaders = [:]
+    public var parameters : Parameters = [:]
+    public var method : HTTPMethod = .get
+    public var encoding : ParameterEncoding = JSONEncoding.default
     
     
-    func fetch(){
+    public func fetch(){
         CNNetworkManager.default.start(request: self)
     }
-    func cancle(){
+    public func cancle(){
         CNNetworkManager.default.cancle(request: self)
     }
     
-    func shouldSend()->Bool{
+    public func shouldSend()->Bool{
         return true
     }
-    func willSend(){
+    public func willSend(){
         
     }
-    func didSend(){
+    public func didSend(){
         
     }
     
-    func handleToError(response:DataResponse<Data>){
+    public func handleToError(response:DataResponse<Data>){
         
     }
-    func receiveError(error:NSError){
+    public func receiveError(error:NSError){
         
     }
     
-    func shouldReceiveData(responseData:Data)->Bool{
+    public func shouldReceiveData(responseData:Data)->Bool{
         return true
     }
-    func willReceiveData(responseData:Data){
+    public func willReceiveData(responseData:Data){
         
     }
-    func didReceiveData(responseData:Data){
+    public func didReceiveData(responseData:Data){
         
     }
     
 }
 
 extension CNRequestBase : Equatable{
-    static func ==(lhs: CNRequestBase, rhs: CNRequestBase) -> Bool {
+    public static func ==(lhs: CNRequestBase, rhs: CNRequestBase) -> Bool {
         return lhs.path == rhs.path && NSDictionary.init(dictionary: lhs.headers).isEqual(to: rhs.headers) && NSDictionary.init(dictionary: lhs.parameters).isEqual(to: rhs.parameters) && lhs.method == rhs.method
     }
 }

@@ -10,12 +10,12 @@ import Foundation
 import RxSwift
 import Alamofire
 
-enum CNResponse<T> {
+public enum CNResponse<T> {
     case success(value:T)
     case failure(error:NSError)
 }
 
-class CNRequestObject<T:Codable> : CNRequestBase{
+public class CNRequestObject<T:Codable> : CNRequestBase{
     
     private var publish = PublishSubject<CNResponse<T>>.init()
     
@@ -33,7 +33,7 @@ class CNRequestObject<T:Codable> : CNRequestBase{
     }
     
     //override
-    override func didReceiveData(responseData: Data) {
+    override public func didReceiveData(responseData: Data) {
         super.didReceiveData(responseData: responseData)
         do {
             let decoder = JSONDecoder()
@@ -43,20 +43,20 @@ class CNRequestObject<T:Codable> : CNRequestBase{
             self.publish.onNext(CNResponse.failure(error: error as NSError))
         }
     }
-    override func receiveError(error: NSError) {
+    override public func receiveError(error: NSError) {
         self.publish.onNext(CNResponse.failure(error: error as NSError))
     }
 }
 
-class CNRequestArray<T:Codable> : CNRequestBase{
+public class CNRequestArray<T:Codable> : CNRequestBase{
     
-    var page = 1 //翻页的page 和 size
-    var size = 20 //此参数无效 目前服务器想返回几条 就返回几条，直接根据返回结果是不是0来判断hasNext
-    var hasNext = false //是否有下一页 如果正在请求中 该参数也为false
+    public var page = 1 //翻页的page 和 size
+    public var size = 20 //此参数无效 目前服务器想返回几条 就返回几条，直接根据返回结果是不是0来判断hasNext
+    public var hasNext = false //是否有下一页 如果正在请求中 该参数也为false
     
     private var publish = PublishSubject<CNResponse<[T]>>.init()
     
-    func subscribe(success:@escaping ([T])->Void,failure:@escaping (Error)->Void)->Disposable{
+    public func subscribe(success:@escaping ([T])->Void,failure:@escaping (Error)->Void)->Disposable{
         return self.publish.subscribe(onNext: { (response) in
             switch response{
             case .success(value: let value):
@@ -69,13 +69,13 @@ class CNRequestArray<T:Codable> : CNRequestBase{
         })
     }
     
-    func fetchFirst(){
+    public func fetchFirst(){
         self.hasNext = false
         self.page = 1
         self.fetch()
     }
     
-    func fetchNext(){
+    public func fetchNext(){
         if !self.hasNext{return}
         self.hasNext = false //
         self.page = self.page + 1
@@ -84,12 +84,12 @@ class CNRequestArray<T:Codable> : CNRequestBase{
     
     //override
     
-    override func shouldSend() -> Bool {
+    public override func shouldSend() -> Bool {
         self.parameters["page"] = self.page
         return true
     }
     
-    override func didReceiveData(responseData: Data) {
+    public override func didReceiveData(responseData: Data) {
         super.didReceiveData(responseData: responseData)
         do {
             let decoder = JSONDecoder()
@@ -104,7 +104,7 @@ class CNRequestArray<T:Codable> : CNRequestBase{
             self.publish.onNext(CNResponse.failure(error: error as NSError))
         }
     }
-    override func receiveError(error: NSError) {
+    public override func receiveError(error: NSError) {
         self.hasNext = true
         self.publish.onNext(CNResponse.failure(error: error as NSError))
     }
