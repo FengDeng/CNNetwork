@@ -15,11 +15,15 @@ open class CNRequestBase {
     open internal(set) var dataRequest : DataRequest? = nil
     open internal(set) var dataResponse : DataResponse<Data>? = nil
     
-    open var path : String = ""
-    open var headers : HTTPHeaders = [:]
-    open var parameters : Parameters = [:]
-    open var method : HTTPMethod = .get
-    open var encoding : ParameterEncoding = JSONEncoding.default
+    open var path : String {return ""}
+    open var headers : HTTPHeaders {return [:]}
+    open var parameters : Parameters {return [:]}
+    open var method : HTTPMethod {return .get}
+    open var encoding : ParameterEncoding {return JSONEncoding.default}
+    
+    public var defaultParameters : Parameters = [:]
+    
+    public var defaultHeaders : HTTPHeaders = [:]
     
     public init() {
         
@@ -66,3 +70,5 @@ extension CNRequestBase : Equatable{
         return lhs.path == rhs.path && NSDictionary.init(dictionary: lhs.headers).isEqual(to: rhs.headers) && NSDictionary.init(dictionary: lhs.parameters).isEqual(to: rhs.parameters) && lhs.method == rhs.method
     }
 }
+
+

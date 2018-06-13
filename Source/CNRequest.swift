@@ -85,7 +85,7 @@ open class CNRequestArray<T:Codable> : CNRequestBase{
     //override
     
     open override func shouldSend() -> Bool {
-        self.parameters["page"] = self.page
+        self.defaultParameters["page"] = self.page
         return true
     }
     

@@ -66,7 +66,7 @@ public class CNNetworkManager{
         
         self.requests.append(request)
         let url = (host + request.path).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let dataRequest = sessionManager.request(url!, method: request.method, parameters: request.parameters, encoding: request.encoding, headers: request.headers)
+        let dataRequest = sessionManager.request(url!, method: request.method, parameters: request.parameters + request.defaultParameters, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
         request.dataRequest = dataRequest
         
         //will send
@@ -127,5 +127,13 @@ public class CNNetworkManager{
         }
     }
     
+}
+
+func + <T>(lhs: Dictionary<String,T>, rhs: Dictionary<String,T>) -> Dictionary<String,T> {
+    var dic = lhs
+    for (key,value) in rhs{
+        dic[key] = value
+    }
+    return dic
 }
 
