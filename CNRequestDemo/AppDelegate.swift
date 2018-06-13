@@ -20,17 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func test1(){
-        class B :Codable{
-            var times = 8
-            var sex = "男"
-        }
-        let base = CNRequestObject<B>()
-        base.subscribe(success: { (b) in
-            print(b)
-        }) { (err) in
-            print(err)
-        }.disposed(by: self.rx.dispose)
-        base.fetch()
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
