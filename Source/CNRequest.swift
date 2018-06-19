@@ -79,9 +79,9 @@ extension Array : Pageble {
 //当API需要翻页的时候 实现下列接口
 private var pageKey = "pageKey"
 private var sizeKey = "sizeKey"
-extension CNRequest where T : Pageble{
+public extension CNRequest where T : Pageble{
     //页数
-    var page : Int{
+    public var page : Int{
         get{
             return (objc_getAssociatedObject(self, &pageKey) as? Int) ?? 1
         }
@@ -91,7 +91,7 @@ extension CNRequest where T : Pageble{
         }
     }
     //每页的大小
-    var size : Int{
+    public var size : Int{
         get{
             return (objc_getAssociatedObject(self, &sizeKey) as? Int) ?? 20
         }
@@ -101,13 +101,13 @@ extension CNRequest where T : Pageble{
         }
     }
   
-    func fetchFirst() {
+    public func fetchFirst() {
         self.hasNext = false
         self.page = 1
         self.fetch()
     }
     
-    func fetchNext() {
+    public func fetchNext() {
         if !self.hasNext{return}
         self.hasNext = false
         self.page = self.page + 1
