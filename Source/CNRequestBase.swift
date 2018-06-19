@@ -36,7 +36,7 @@ open class CNRequestBase {
         CNNetworkManager.default.cancle(request: self)
     }
     
-    open func shouldSend()->Bool{
+    @objc open func shouldSend()->Bool{
         return true
     }
     open func willSend(){
