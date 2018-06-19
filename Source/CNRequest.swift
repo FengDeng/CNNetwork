@@ -57,7 +57,7 @@ open class CNRequest<T:Codable> : CNRequestBase{
 }
 
 //翻页协议
-public protocol Nextable{
+public protocol Nextable {
    var hasNext : Bool{get}
 }
 public protocol Datable {
@@ -65,7 +65,7 @@ public protocol Datable {
     var datas : [E] {get}
 }
 
-public typealias Pageble = Nextable & Datable
+public typealias Pageble = Nextable & Datable & Codable
 //给数组默认实现翻页协议
 extension Array : Pageble {
     public typealias E = Element
