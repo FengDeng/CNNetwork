@@ -75,33 +75,76 @@ pod 'CNNetwork', :git => 'https://github.com/FengDeng/CNNetwork.git', :branch =>
     ```
 
 
-### init request
+### 如何使用
 
-  1. 单个模型请求
-    
-    class B :Codable{
-            var times = 8
-            var sex = "男"
+
+### 单个模型
+
+    //新建一个模型
+        class UserVO : Codable{
+            var name = ""
+            var sex = Sex.man
+            
+            enum Sex : Int,Codable {
+                case man
+                case woman
+            }
         }
-        let base = CNRequestObject<B>()
-        base.subscribe(success: { (b) in
-            print(b)
-        }) { (err) in
-            print(err)
-        }.disposed(by: self.rx.dispose)
-        base.fetch()
-
-  2. 数组模型请求
-
-    class B :Codable{
-            var times = 8
-            var sex = "男"
+        
+        //建立一个获取单个模型的请求
+        class GetUserVO: CNRequest<UserVO> {
+            
         }
-        let base = CNRequestArray<B>()
-        base.subscribe(success: { (bs) in
-            print(bs)
+        let getUserVOAPI = GetUserVO.init()
+        getUserVOAPI.subscribe(success: { (user) in
+            print(user)
         }) { (err) in
-            print(err)
-        }.disposed(by: self.rx.dispose)
-        base.fetchFirst()
-        base.fetchNext()
+            
+        }.disposed(by: disposeBag)
+        getUserVOAPI.fetch()
+
+
+
+### 数组模型，带翻页
+
+    //建立一个获取数组模型的请求
+        class GetUserVOList: CNRequest<[UserVO]> {
+            
+        }
+        let api2 = GetUserVOList()
+        api2.subscribe(success: { (users) in
+            print(users.count)
+        }) { (ere) in
+            
+        }.disposed(by: disposeBag)
+        api2.fetchFirst()
+        api2.fetchNext()
+
+
+### 单个模型，里面含有数组  有翻页
+
+    //新建一个模型，翻页数组在模型内部，例如
+        class Store: Pageble{
+            var name = ""
+            var users = [UserVO]() //这个是翻页数组
+            
+            //下面两个方法是翻页协议
+            var datas: [UserVO] {
+                return users
+            }
+            var hasNext: Bool {
+                return users.count > 0
+            }
+        }
+        class GetStore: CNRequest<Store> {
+            
+        }
+        let storeAPI = GetStore()
+        storeAPI.subscribe(success: { (store) in
+            let users = store.users
+            print(users)
+        }) { (err) in
+            
+        }.disposed(by: disposeBag)
+        storeAPI.fetchFirst()
+        storeAPI.fetchNext()
