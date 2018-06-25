@@ -10,19 +10,18 @@ import Foundation
 import RxSwift
 import Alamofire
 
-public enum CNResponse<T> {
+public enum CNResponse<T > {
     case success(value:T)
     case failure(error:NSError)
 }
 
-open class CNRequest<T:Codable> : CNRequestBase{
+open class CNRequest<T:Codable> : CNRequestBase,ObservableType{
+    public func subscribe<O>(_ observer: O) -> Disposable where O : ObserverType, CNRequest.E == O.E {
+        return self.publish().asObservable().subscribe(observer)
+    }
     
-    public var hasNext = false //只有T 符合翻页时有效
-    
-    private var publish = PublishSubject<CNResponse<T>>.init()
-    
-    open func subscribe(success:@escaping (T)->Void,failure:@escaping (Error)->Void)->Disposable{
-        return self.publish.observeOn(MainScheduler.instance).subscribe(onNext: { (response) in
+    public func subscribe(success:@escaping (T)->Void,failure:@escaping (Error)->Void)->Disposable{
+        return self.observeOn(MainScheduler.instance).subscribe(onNext: { (response) in
             switch response{
             case .success(value: let value):
                 success(value)
@@ -34,10 +33,20 @@ open class CNRequest<T:Codable> : CNRequestBase{
         })
     }
 
+    public typealias E = CNResponse<T>
+    
+    
+
+    public var hasNext = false //只有T 符合翻页时有效
+    
+    private var publish = ReplaySubject<CNResponse<T>>.create(bufferSize: 1)
+    
+
     //override
     
     override open func didReceiveData(responseData: Data) {
         super.didReceiveData(responseData: responseData)
+        //self.publish.aa()
         do {
             let decoder = JSONDecoder()
             let obj = try decoder.decode(T.self, from: responseData)
