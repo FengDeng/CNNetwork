@@ -65,7 +65,11 @@ public class CNNetworkManager{
         
         
         self.requests.append(request)
-        let url = (host + request.path).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let queryStr = request.defaultQuerys.map { (obj) -> String in
+            return "\(obj.key)=\(obj.value)"
+        }.joined(separator: "&")
+        let queryStr1 = queryStr.count > 0 ? "?\(queryStr)" : queryStr
+        let url = (host + request.path + queryStr1).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let dataRequest = sessionManager.request(url!, method: request.method, parameters: request.parameters + request.defaultParameters, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
         request.dataRequest = dataRequest
         
