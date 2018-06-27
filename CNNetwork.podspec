@@ -1,24 +1,22 @@
 
 Pod::Spec.new do |s|
+  s.name             = 'CNNetwork'
+  s.version          = '0.1.0'
+  s.summary          = 'A short description of CNNetwork.'
 
-  s.name         = "CNNetwork"
-  s.version      = "1.0.0"
-  s.summary      = "Simple request base on Alamofire & RxSwift"
+
+  s.description      = <<-DESC
+TODO: Add long description of the pod here.
+                       DESC
+  s.homepage         = 'https://github.com/704292743@qq.com/CommonKit'
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.author           = { '704292743@qq.com' => '704292743@qq.com' }
+  s.source           = { :git => 'git@git.51wakeup.cn:iOS-Team/CNNetwork.git', :branch => 'master' }
+
+  s.ios.deployment_target = '8.0'
+
   s.swift_version = "4.1"
-  s.description  = <<-DESC
-                    Simple request base on Alamofire & RxSwift,Simple request base on Alamofire & RxSwift
-                   DESC
-
-  s.homepage     = "http://git.51wakeup.cn:81/wakeup/GuideSpecs"
-
-  s.license      = { :type => "MIT", :file => "LICENSE" }
-  s.author             = { "邓锋" => "704292743@qq.com" }
-  s.platform     = :ios, "8.0"
-  s.source       = { :git => "git@git.51wakeup.cn:iOS-Team/CNNetwork.git", :branch => "master"  }
-  s.source_files  = "Classes", "Source/*.swift"
-  s.framework  = "Foundation"
-  s.requires_arc = true
+  s.source_files = 'CNNetwork/Classes/**/*'
   s.dependency "RxSwift"
   s.dependency "Alamofire"
-
 end
