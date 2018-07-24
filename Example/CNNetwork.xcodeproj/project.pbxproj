@@ -14,6 +14,12 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		9FCBCF372106B9F500687520 /* CNRequestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBCF302106B9F500687520 /* CNRequestBase.swift */; };
+		9FCBCF382106B9F500687520 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 9FCBCF312106B9F500687520 /* .gitkeep */; };
+		9FCBCF392106B9F500687520 /* CNNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBCF322106B9F500687520 /* CNNetworkManager.swift */; };
+		9FCBCF3A2106B9F500687520 /* CNRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBCF332106B9F500687520 /* CNRequest.swift */; };
+		9FCBCF3B2106B9F500687520 /* CNRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBCF342106B9F500687520 /* CNRequestData.swift */; };
+		9FCBCF3C2106B9F500687520 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 9FCBCF362106B9F500687520 /* .gitkeep */; };
 		B8085097765664967CDB1B4A /* Pods_CNNetwork_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA03400ABAB271066CA7E98 /* Pods_CNNetwork_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +49,12 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		889F0BB2966E5AE9327E0440 /* Pods-CNNetwork_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNNetwork_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNNetwork_Tests/Pods-CNNetwork_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		915C21231B3DC47F9CCFAB0B /* Pods-CNNetwork_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNNetwork_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNNetwork_Example/Pods-CNNetwork_Example.release.xcconfig"; sourceTree = "<group>"; };
+		9FCBCF302106B9F500687520 /* CNRequestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRequestBase.swift; sourceTree = "<group>"; };
+		9FCBCF312106B9F500687520 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		9FCBCF322106B9F500687520 /* CNNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNNetworkManager.swift; sourceTree = "<group>"; };
+		9FCBCF332106B9F500687520 /* CNRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRequest.swift; sourceTree = "<group>"; };
+		9FCBCF342106B9F500687520 /* CNRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRequestData.swift; sourceTree = "<group>"; };
+		9FCBCF362106B9F500687520 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		B3722D127878A94FA01F6C91 /* Pods-CNNetwork_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNNetwork_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNNetwork_Tests/Pods-CNNetwork_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B95AC181D8AEFC0E01A57911 /* Pods_CNNetwork_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNNetwork_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3505F895383DE80E76B4E91 /* Pods-CNNetwork_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNNetwork_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNNetwork_Example/Pods-CNNetwork_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -72,6 +84,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				9FCBCF2E2106B9F500687520 /* CNNetwork */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for CNNetwork */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -137,6 +150,36 @@
 				0E3A5C465A2D0A21E9B630EC /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		9FCBCF2E2106B9F500687520 /* CNNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				9FCBCF2F2106B9F500687520 /* Classes */,
+				9FCBCF352106B9F500687520 /* Assets */,
+			);
+			name = CNNetwork;
+			path = ../CNNetwork;
+			sourceTree = "<group>";
+		};
+		9FCBCF2F2106B9F500687520 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9FCBCF302106B9F500687520 /* CNRequestBase.swift */,
+				9FCBCF312106B9F500687520 /* .gitkeep */,
+				9FCBCF322106B9F500687520 /* CNNetworkManager.swift */,
+				9FCBCF332106B9F500687520 /* CNRequest.swift */,
+				9FCBCF342106B9F500687520 /* CNRequestData.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		9FCBCF352106B9F500687520 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				9FCBCF362106B9F500687520 /* .gitkeep */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		A3D421AA7F61D1A6BE413553 /* Frameworks */ = {
@@ -249,7 +292,9 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				9FCBCF3C2106B9F500687520 /* .gitkeep in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				9FCBCF382106B9F500687520 /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +395,10 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				9FCBCF3B2106B9F500687520 /* CNRequestData.swift in Sources */,
+				9FCBCF372106B9F500687520 /* CNRequestBase.swift in Sources */,
+				9FCBCF392106B9F500687520 /* CNNetworkManager.swift in Sources */,
+				9FCBCF3A2106B9F500687520 /* CNRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

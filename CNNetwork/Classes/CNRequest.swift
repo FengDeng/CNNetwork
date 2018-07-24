@@ -17,7 +17,7 @@ public enum CNResponse<T > {
 
 open class CNRequest<T:Codable> : CNRequestBase,ObservableType{
     public func subscribe<O>(_ observer: O) -> Disposable where O : ObserverType, CNRequest.E == O.E {
-        return self.publish().asObservable().subscribe(observer)
+        return self.publish.asObservable().subscribe(observer)
     }
     
     public func subscribe(success:@escaping (T)->Void,failure:@escaping (Error)->Void)->Disposable{
@@ -56,7 +56,9 @@ open class CNRequest<T:Codable> : CNRequestBase,ObservableType{
             self.publish.onNext(CNResponse.success(value: obj))
         } catch  {
             self.hasNext = true
-            self.publish.onNext(CNResponse.failure(error: error as NSError))
+            let e = error as NSError
+            let message = "接口数据解析错误(\(e.description))"
+            self.publish.onNext(CNResponse.failure(error:NSError.init(domain: message, code: e.code, userInfo: e.userInfo)))
         }
     }
     override open func receiveError(error: NSError) {

@@ -12,7 +12,7 @@ import Alamofire
 
 open class CNRequestData : CNRequestBase,ObservableType{
     public func subscribe<O>(_ observer: O) -> Disposable where O : ObserverType, CNRequestData.E == O.E {
-        return self.publish().asObservable().subscribe(observer)
+        return self.publish.asObservable().subscribe(observer)
     }
     
     public typealias E = CNResponse<Data>
