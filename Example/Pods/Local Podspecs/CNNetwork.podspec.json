@@ -1,9 +1,9 @@
 {
   "name": "CNNetwork",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "summary": "A short description of CNNetwork.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/704292743@qq.com/CNNetwork",
+  "homepage": "https://github.com/704292743@qq.com/CommonKit",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,20 @@
     "704292743@qq.com": "704292743@qq.com"
   },
   "source": {
-    "git": "https://github.com/704292743@qq.com/CNNetwork.git",
-    "tag": "0.1.0"
+    "git": "git@git.51wakeup.cn:iOS-Team/CNNetwork.git",
+    "branch": "master"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "CNNetwork/Classes/**/*"
+  "swift_version": "4.1",
+  "source_files": "CNNetwork/Classes/**/*",
+  "dependencies": {
+    "RxSwift": [
+
+    ],
+    "Alamofire": [
+
+    ]
+  }
 }

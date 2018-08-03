@@ -70,13 +70,24 @@ public class CNNetworkManager{
         }.joined(separator: "&")
         let queryStr1 = queryStr.count > 0 ? "?\(queryStr)" : queryStr
         let url = (host + request.path + queryStr1).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let dataRequest = sessionManager.request(url!, method: request.method, parameters: request.parameters + request.defaultParameters, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
+        
+        var dataRequest : DataRequest
+        if request.method == .get{
+            let paras = request.parameters + request.defaultParameters
+            let str = paras.map { (obj) -> String in
+                return "\(obj.key)=\(obj.value)"
+                }.joined(separator: "&")
+            dataRequest = sessionManager.request(url! + "&" + str, method: request.method, parameters: nil, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
+        }else{
+            dataRequest = sessionManager.request(url!, method: request.method, parameters: request.parameters + request.defaultParameters, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
+        }
+        
+        
         request.dataRequest = dataRequest
         
         //will send
         request.willSend()
         self.requestWillSend?(request)
-        
         
         dataRequest.responseData {[weak self] (response) in
             guard let `self` = self else{return}
