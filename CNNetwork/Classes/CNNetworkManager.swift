@@ -32,7 +32,8 @@ public class CNNetworkManager{
     
     
     public static let `default` = CNNetworkManager()
-    
+    //401 回调
+    public var unLoginCompleted: (()->())?
     public let reachabilityManager = NetworkReachabilityManager()
     public let networkChanged = PublishSubject<NetworkReachabilityManager.NetworkReachabilityStatus>.init()
     var requests = [CNRequestBase]()
@@ -52,8 +53,6 @@ public class CNNetworkManager{
     
     //
     public var host = ""
-    
-    
     func start(request:CNRequestBase){
         //如果请求已经在数组中
         if let _ = self.requests.index(of: request){
@@ -67,7 +66,7 @@ public class CNNetworkManager{
         self.requests.append(request)
         let queryStr = request.defaultQuerys.map { (obj) -> String in
             return "\(obj.key)=\(obj.value)"
-        }.joined(separator: "&")
+            }.joined(separator: "&")
         let queryStr1 = queryStr.count > 0 ? "?\(queryStr)" : queryStr
         let url = (host + request.path + queryStr1).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
@@ -95,6 +94,11 @@ public class CNNetworkManager{
             request.dataResponse = response
             //handle error
             if let error = self.requestHandleToError?(request,response){
+                if let res = response.response{
+                    if res.statusCode == 401 {
+                        self.unLoginCompleted?()
+                    }
+                }
                 if let handle = self.requestReceiveError?(request,error as NSError),handle{return}
                 request.receiveError(error: error as NSError)
                 return
@@ -151,4 +155,5 @@ func + <T>(lhs: Dictionary<String,T>, rhs: Dictionary<String,T>) -> Dictionary<S
     }
     return dic
 }
+
 
