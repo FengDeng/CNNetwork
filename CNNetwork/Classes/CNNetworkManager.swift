@@ -32,8 +32,6 @@ public class CNNetworkManager{
     
     
     public static let `default` = CNNetworkManager()
-    //401 回调
-    public var unLoginCompleted: (()->())?
     public let reachabilityManager = NetworkReachabilityManager()
     public let networkChanged = PublishSubject<NetworkReachabilityManager.NetworkReachabilityStatus>.init()
     var requests = [CNRequestBase]()
@@ -94,11 +92,6 @@ public class CNNetworkManager{
             request.dataResponse = response
             //handle error
             if let error = self.requestHandleToError?(request,response){
-                if let res = response.response{
-                    if res.statusCode == 401 {
-                        self.unLoginCompleted?()
-                    }
-                }
                 if let handle = self.requestReceiveError?(request,error as NSError),handle{return}
                 request.receiveError(error: error as NSError)
                 return
