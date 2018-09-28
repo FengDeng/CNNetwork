@@ -27,6 +27,8 @@ open class CNRequestBase {
     
     public var defaultQuerys : HTTPHeaders = [:]
     
+    public internal(set) var isRequesting = false
+    
     public init() {
         
     }
