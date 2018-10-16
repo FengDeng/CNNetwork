@@ -15,6 +15,7 @@ open class CNRequestBase {
     open internal(set) var dataRequest : DataRequest? = nil
     open internal(set) var dataResponse : DataResponse<Data>? = nil
     
+    open var host : String {return ""}
     open var path : String {return ""}
     open var headers : HTTPHeaders {return [:]}
     open var parameters : Parameters {return [:]}

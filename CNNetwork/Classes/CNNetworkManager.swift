@@ -66,7 +66,8 @@ public class CNNetworkManager{
             return "\(obj.key)=\(obj.value)"
             }.joined(separator: "&")
         let queryStr1 = queryStr.count > 0 ? "?\(queryStr)" : queryStr
-        let url = (host + request.path + queryStr1).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let requestHost = request.host.count == 0 ? host : request.host
+        let url = (requestHost + request.path + queryStr1).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         var dataRequest : DataRequest
         if request.method == .get{
@@ -100,6 +101,7 @@ public class CNNetworkManager{
             //error
             if let error = response.error{
                 if let handle = self.requestReceiveError?(request,error as NSError),handle{return}
+                
                 request.receiveError(error: error as NSError)
                 return
             }
