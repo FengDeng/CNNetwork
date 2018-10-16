@@ -87,9 +87,11 @@ public class CNNetworkManager{
         request.willSend()
         self.requestWillSend?(request)
         
+        request.isRequesting = true
         dataRequest.responseData {[weak self] (response) in
             guard let `self` = self else{return}
             defer{ self.remove(request: request)}
+            request.isRequesting = false
             request.dataResponse = response
             //handle error
             if let error = self.requestHandleToError?(request,response){
