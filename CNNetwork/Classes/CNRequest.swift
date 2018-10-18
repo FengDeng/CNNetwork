@@ -107,7 +107,7 @@ public extension CNRequest where T : Pageble{
             return (objc_getAssociatedObject(self, &sizeKey) as? Int) ?? 20
         }
         set{
-            self.defaultParameters["size"] = newValue
+            self.defaultParameters["pageSize"] = newValue
             objc_setAssociatedObject(self, &sizeKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
