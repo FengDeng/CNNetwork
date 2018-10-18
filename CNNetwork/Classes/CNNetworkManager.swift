@@ -102,9 +102,13 @@ public class CNNetworkManager{
             
             //error
             if let error = response.error{
-                if let handle = self.requestReceiveError?(request,error as NSError),handle{return}
+                var rErr = NSError.init(domain: "网络连接出现问题", code: -1, userInfo: nil)
+                if let desc = (error as NSError).userInfo[NSLocalizedDescriptionKey] as? String{
+                    rErr = NSError.init(domain: desc, code: -1, userInfo: nil)
+                }
+                if let handle = self.requestReceiveError?(request,rErr),handle{return}
                 
-                request.receiveError(error: error as NSError)
+                request.receiveError(error: rErr)
                 return
             }
             
