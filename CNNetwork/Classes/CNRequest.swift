@@ -57,7 +57,9 @@ open class CNRequest<T:Codable> : CNRequestBase,ObservableType{
         } catch  {
             self.hasNext = true
             let e = error as NSError
-            let message = "接口数据解析错误(\(e.description))"
+            let message = "服务器数据解析错误"
+            print("服务器数据解析错误:")
+            print(e.description)
             self.publish.onNext(CNResponse.failure(error:NSError.init(domain: message, code: e.code, userInfo: e.userInfo)))
         }
     }
