@@ -14,7 +14,7 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'git@git.51wakeup.cn:iOS-Team/CNNetwork.git', :branch => 'master' }
 
   s.platform     = :ios, "8.0"
-  s.swift_version = "4.1"
+  s.swift_version = "4.2"
   s.source_files = 'CNNetwork/Classes/**/*'
 
   s.dependency "RxSwift"

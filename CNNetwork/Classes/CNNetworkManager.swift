@@ -21,7 +21,7 @@ public class CNNetworkManager{
     
     //error    如果实现了该方法，并且返回了error 则直接解析成错误
     public var requestHandleToError:((_ request:CNRequestBase,_ response:DataResponse<Data>)->NSError?)?
-    public var requestReceiveError:((_ request:CNRequestBase,_ error:NSError)->Bool)?//return true 拦截掉错误，request将收不到
+    public var requestReceiveError:((_ request:CNRequestBase,_ error:NSError)->Error?)?//return nil 拦截掉错误，request将收不到
     
     //data
     public var requestShouldReceiveData:((_ request:CNRequestBase,_ responseData:Data)->Bool)?
@@ -41,6 +41,15 @@ public class CNNetworkManager{
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 10
         self.sessionManager = SessionManager.init(configuration: configuration)
+        
+//        let serverTrustPolicies: [String: ServerTrustPolicy] = [
+//            "gateway.91zhiyin.com": .pinCertificates(
+//                certificates: ServerTrustPolicy.certificates(),
+//                validateCertificateChain: true,
+//                validateHost: true
+//            )
+//        ]
+//        self.sessionManager = SessionManager.init(configuration:configuration , serverTrustPolicyManager: ServerTrustPolicyManager.init(policies: serverTrustPolicies))
         //监听网络
         reachabilityManager?.listener = {[weak self]status in
             print("Network Status Changed: \(status)")
@@ -82,7 +91,10 @@ public class CNNetworkManager{
         
         
         request.dataRequest = dataRequest
-        
+        if let timeoutInterval = request.timeoutInterval{
+            dataRequest.request?.timeoutInterval == timeoutInterval
+        }
+
         //will send
         request.willSend()
         self.requestWillSend?(request)
@@ -95,15 +107,25 @@ public class CNNetworkManager{
             request.dataResponse = response
             //handle error
             if let error = self.requestHandleToError?(request,response){
-                if let handle = self.requestReceiveError?(request,error as NSError),handle{return}
-                request.receiveError(error: error as NSError)
+                guard let handle = self.requestReceiveError else{
+                    request.receiveError(error: (error as NSError))
+                    return
+                }
+                if let handleError = handle(request,(error as NSError)){
+                    request.receiveError(error: (handleError as NSError))
+                }
                 return
             }
             
             //error
             if let error = response.error{
-                if let handle = self.requestReceiveError?(request,(error as NSError)),handle{return}
-                request.receiveError(error: (error as NSError))
+                guard let handle = self.requestReceiveError else{
+                    request.receiveError(error: (error as NSError))
+                    return
+                }
+                if let handleError = handle(request,(error as NSError)){
+                    request.receiveError(error: (handleError as NSError))
+                }
                 return
             }
             
