@@ -74,7 +74,7 @@ open class CNRequestBase {
 
 extension CNRequestBase : Equatable{
     open static func ==(lhs: CNRequestBase, rhs: CNRequestBase) -> Bool {
-        return lhs.path == rhs.path && NSDictionary.init(dictionary: lhs.headers).isEqual(to: rhs.headers) && NSDictionary.init(dictionary: lhs.parameters).isEqual(to: rhs.parameters) && lhs.method == rhs.method
+        return lhs.path == rhs.path && NSDictionary.init(dictionary: lhs.headers).isEqual(to: rhs.headers) && NSDictionary.init(dictionary: lhs.parameters).isEqual(to: rhs.parameters) && lhs.method == rhs.method && NSDictionary.init(dictionary: lhs.defaultParameters).isEqual(to: rhs.defaultParameters)
     }
 }
 

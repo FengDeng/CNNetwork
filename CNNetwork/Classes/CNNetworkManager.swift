@@ -63,6 +63,7 @@ public class CNNetworkManager{
     func start(request:CNRequestBase){
         //如果请求已经在数组中
         if let _ = self.requests.index(of: request){
+            print("请求重复")
             return
         }
         //should send
