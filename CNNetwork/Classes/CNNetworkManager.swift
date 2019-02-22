@@ -61,10 +61,16 @@ public class CNNetworkManager{
     //
     public var host = ""
     func start(request:CNRequestBase){
+        print("start--:\(request)")
+        print("--:\(request.isRequesting)")
         //如果请求已经在数组中
         if let _ = self.requests.index(of: request){
             print("请求重复")
             return
+        }
+        if request.isRequesting{
+            return
+            
         }
         //should send
         if !request.shouldSend() {return}
@@ -82,10 +88,13 @@ public class CNNetworkManager{
         var dataRequest : DataRequest
         if request.method == .get{
             let paras = request.parameters + request.defaultParameters
-            let str = paras.map { (obj) -> String in
+            var str = paras.map { (obj) -> String in
                 return "\(obj.key)=\(obj.value)"
                 }.joined(separator: "&")
-            dataRequest = sessionManager.request(url! + "&" + str, method: request.method, parameters: nil, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
+            if str.count > 0{
+                str = "&" + str
+            }
+            dataRequest = sessionManager.request(url! + str, method: request.method, parameters: nil, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
         }else{
             dataRequest = sessionManager.request(url!, method: request.method, parameters: request.parameters + request.defaultParameters, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
         }
