@@ -131,6 +131,7 @@ public extension CNRequest where T : Pageble{
     }
     
     public func fetchNext() {
+        if self.isRequesting{return}
         if !self.hasNext{return}
         self.hasNext = false
         self.page = self.page + 1
