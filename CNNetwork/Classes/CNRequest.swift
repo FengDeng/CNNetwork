@@ -63,13 +63,21 @@ open class CNRequest<T:Codable> : CNRequestBase,ObservableType{
             }
             self.publish.onNext(CNResponse.success(value: obj))
         } catch  {
-            self.hasNext = true
             let e = error as NSError
+            self.hasNext = true
             let message = "服务器数据解析错误"
             print("服务器数据解析错误:")
             print(e.description)
-            self.publish.onNext(CNResponse.failure(error:NSError.init(domain: message, code: e.code, userInfo: e.userInfo)))
+            retryCount += 1
+
+            if retryCount >= maxRetryCount {
+                self.publish.onNext(CNResponse.failure(error:NSError.init(domain: message, code: e.code, userInfo: e.userInfo)))
+            } else {
+                
+            }
+            
         }
+      
     }
     override open func receiveError(error: NSError) {
         self.hasNext = true
