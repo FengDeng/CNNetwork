@@ -32,10 +32,6 @@ open class CNRequestBase {
     
     public internal(set) var isRequesting = false
     
-    public var retryCount:Int = 0
-    ///包含第一次, 一共三次
-    public var maxRetryCount: Int = 1
-    
     public init() {
         
     }

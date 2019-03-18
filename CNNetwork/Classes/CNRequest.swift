@@ -68,13 +68,7 @@ open class CNRequest<T:Codable> : CNRequestBase,ObservableType{
             let message = "服务器数据解析错误"
             print("服务器数据解析错误:")
             print(e.description)
-            retryCount += 1
-
-            if retryCount >= maxRetryCount {
-                self.publish.onNext(CNResponse.failure(error:NSError.init(domain: message, code: e.code, userInfo: e.userInfo)))
-            } else {
-                
-            }
+            self.publish.onNext(CNResponse.failure(error:NSError.init(domain: message, code: e.code, userInfo: e.userInfo)))
             
         }
       
