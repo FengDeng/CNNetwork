@@ -16,6 +16,14 @@ public enum CNResponse<T > {
 }
 
 open class CNRequest<T:Codable> : CNRequestBase,ObservableType{
+    
+    open var pageKey :String{
+        return "pageNum"
+    }
+    open var sizeKey :String{
+        return "pageSize"
+    }
+    
     public func subscribe<O>(_ observer: O) -> Disposable where O : ObserverType, CNRequest.E == O.E {
         return self.publish.asObservable().subscribe(observer)
     }
@@ -55,13 +63,15 @@ open class CNRequest<T:Codable> : CNRequestBase,ObservableType{
             }
             self.publish.onNext(CNResponse.success(value: obj))
         } catch  {
-            self.hasNext = true
             let e = error as NSError
+            self.hasNext = true
             let message = "服务器数据解析错误"
             print("服务器数据解析错误:")
             print(e.description)
             self.publish.onNext(CNResponse.failure(error:NSError.init(domain: message, code: e.code, userInfo: e.userInfo)))
+            
         }
+      
     }
     override open func receiveError(error: NSError) {
         self.hasNext = true
@@ -90,27 +100,29 @@ extension Array : Pageble {
     }
 }
 //当API需要翻页的时候 实现下列接口
-private var pageKey = "pageKey"
-private var sizeKey = "sizeKey"
+private var pageKeyAssociated = "pageKey"
+private var sizeKeyAssociated = "sizeKey"
 public extension CNRequest where T : Pageble{
+    
+    
     //页数
     public var page : Int{
         get{
-            return (objc_getAssociatedObject(self, &pageKey) as? Int) ?? 1
+            return (objc_getAssociatedObject(self, &pageKeyAssociated) as? Int) ?? 1
         }
         set{
-            self.defaultParameters["pageNum"] = newValue
-            objc_setAssociatedObject(self, &pageKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            self.defaultParameters[pageKey] = newValue
+            objc_setAssociatedObject(self, &pageKeyAssociated, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
     //每页的大小
     public var size : Int{
         get{
-            return (objc_getAssociatedObject(self, &sizeKey) as? Int) ?? 20
+            return (objc_getAssociatedObject(self, &sizeKeyAssociated) as? Int) ?? 20
         }
         set{
-            self.defaultParameters["pageSize"] = newValue
-            objc_setAssociatedObject(self, &sizeKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            self.defaultParameters[sizeKey] = newValue
+            objc_setAssociatedObject(self, &sizeKeyAssociated, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
   
@@ -121,6 +133,7 @@ public extension CNRequest where T : Pageble{
     }
     
     public func fetchNext() {
+        if self.isRequesting{return}
         if !self.hasNext{return}
         self.hasNext = false
         self.page = self.page + 1

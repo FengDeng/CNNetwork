@@ -13,14 +13,12 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		9FCBCF372106B9F500687520 /* CNRequestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBCF302106B9F500687520 /* CNRequestBase.swift */; };
 		9FCBCF382106B9F500687520 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 9FCBCF312106B9F500687520 /* .gitkeep */; };
 		9FCBCF392106B9F500687520 /* CNNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBCF322106B9F500687520 /* CNNetworkManager.swift */; };
 		9FCBCF3A2106B9F500687520 /* CNRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBCF332106B9F500687520 /* CNRequest.swift */; };
 		9FCBCF3B2106B9F500687520 /* CNRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBCF342106B9F500687520 /* CNRequestData.swift */; };
 		9FCBCF3C2106B9F500687520 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 9FCBCF362106B9F500687520 /* .gitkeep */; };
-		B8085097765664967CDB1B4A /* Pods_CNNetwork_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA03400ABAB271066CA7E98 /* Pods_CNNetwork_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +44,6 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* CNNetwork_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CNNetwork_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		889F0BB2966E5AE9327E0440 /* Pods-CNNetwork_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNNetwork_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNNetwork_Tests/Pods-CNNetwork_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		915C21231B3DC47F9CCFAB0B /* Pods-CNNetwork_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNNetwork_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNNetwork_Example/Pods-CNNetwork_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9FCBCF302106B9F500687520 /* CNRequestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRequestBase.swift; sourceTree = "<group>"; };
 		9FCBCF312106B9F500687520 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -55,7 +51,6 @@
 		9FCBCF332106B9F500687520 /* CNRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRequest.swift; sourceTree = "<group>"; };
 		9FCBCF342106B9F500687520 /* CNRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRequestData.swift; sourceTree = "<group>"; };
 		9FCBCF362106B9F500687520 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		B3722D127878A94FA01F6C91 /* Pods-CNNetwork_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNNetwork_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNNetwork_Tests/Pods-CNNetwork_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B95AC181D8AEFC0E01A57911 /* Pods_CNNetwork_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNNetwork_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3505F895383DE80E76B4E91 /* Pods-CNNetwork_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNNetwork_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNNetwork_Example/Pods-CNNetwork_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		FCD232FC76B5C114E5D6C095 /* CNNetwork.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CNNetwork.podspec; path = ../CNNetwork.podspec; sourceTree = "<group>"; };
@@ -74,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8085097765664967CDB1B4A /* Pods_CNNetwork_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +122,6 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -165,10 +158,10 @@
 		9FCBCF2F2106B9F500687520 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				9FCBCF302106B9F500687520 /* CNRequestBase.swift */,
 				9FCBCF312106B9F500687520 /* .gitkeep */,
 				9FCBCF322106B9F500687520 /* CNNetworkManager.swift */,
 				9FCBCF332106B9F500687520 /* CNRequest.swift */,
+				9FCBCF302106B9F500687520 /* CNRequestBase.swift */,
 				9FCBCF342106B9F500687520 /* CNRequestData.swift */,
 			);
 			path = Classes;
@@ -196,8 +189,6 @@
 			children = (
 				C3505F895383DE80E76B4E91 /* Pods-CNNetwork_Example.debug.xcconfig */,
 				915C21231B3DC47F9CCFAB0B /* Pods-CNNetwork_Example.release.xcconfig */,
-				889F0BB2966E5AE9327E0440 /* Pods-CNNetwork_Tests.debug.xcconfig */,
-				B3722D127878A94FA01F6C91 /* Pods-CNNetwork_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -228,11 +219,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "CNNetwork_Tests" */;
 			buildPhases = (
-				BF9120A175BFBF2F79657934 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				DD71416560F5898BA99C9AA0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -315,7 +304,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CNNetwork_Example/Pods-CNNetwork_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-CNNetwork_Example/Pods-CNNetwork_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CNNetwork/CNNetwork.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -328,7 +317,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CNNetwork_Example/Pods-CNNetwork_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CNNetwork_Example/Pods-CNNetwork_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		31CCB6147625EBE70E21D011 /* [CP] Check Pods Manifest.lock */ = {
@@ -347,48 +336,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BF9120A175BFBF2F79657934 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CNNetwork_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DD71416560F5898BA99C9AA0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CNNetwork_Tests/Pods-CNNetwork_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble_Snapshots.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CNNetwork_Tests/Pods-CNNetwork_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -411,7 +358,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,7 +526,6 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 889F0BB2966E5AE9327E0440 /* Pods-CNNetwork_Tests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 87X96NB2YG;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -602,7 +547,6 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3722D127878A94FA01F6C91 /* Pods-CNNetwork_Tests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 87X96NB2YG;
 				FRAMEWORK_SEARCH_PATHS = (

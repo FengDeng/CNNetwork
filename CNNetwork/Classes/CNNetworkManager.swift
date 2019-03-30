@@ -41,7 +41,8 @@ public class CNNetworkManager{
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 10
         self.sessionManager = SessionManager.init(configuration: configuration)
-        
+        let requestRetrier = NetworkRequestRetrier()   // Create a request retrier
+        sessionManager.retrier = requestRetrier        // Set the retrier
 //        let serverTrustPolicies: [String: ServerTrustPolicy] = [
 //            "gateway.91zhiyin.com": .pinCertificates(
 //                certificates: ServerTrustPolicy.certificates(),
@@ -61,10 +62,16 @@ public class CNNetworkManager{
     //
     public var host = ""
     func start(request:CNRequestBase){
+        print("start--:\(request)")
+        print("--:\(request.isRequesting)")
         //如果请求已经在数组中
         if let _ = self.requests.index(of: request){
             print("请求重复")
             return
+        }
+        if request.isRequesting{
+            return
+            
         }
         //should send
         if !request.shouldSend() {return}
@@ -82,10 +89,13 @@ public class CNNetworkManager{
         var dataRequest : DataRequest
         if request.method == .get{
             let paras = request.parameters + request.defaultParameters
-            let str = paras.map { (obj) -> String in
+            var str = paras.map { (obj) -> String in
                 return "\(obj.key)=\(obj.value)"
                 }.joined(separator: "&")
-            dataRequest = sessionManager.request(url! + "&" + str, method: request.method, parameters: nil, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
+            if str.count > 0{
+                str = "&" + str
+            }
+            dataRequest = sessionManager.request(url! + str, method: request.method, parameters: nil, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
         }else{
             dataRequest = sessionManager.request(url!, method: request.method, parameters: request.parameters + request.defaultParameters, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
         }
@@ -175,4 +185,47 @@ func + <T>(lhs: Dictionary<String,T>, rhs: Dictionary<String,T>) -> Dictionary<S
     return dic
 }
 
-
+///重试
+class NetworkRequestRetrier: RequestRetrier {
+    
+    // [Request url: Number of times retried]
+    private var retriedRequests: [String: Int] = [:]
+    
+    internal func should(_ manager: SessionManager,
+                         retry request: Request,
+                         with error: Error,
+                         completion: @escaping RequestRetryCompletion) {
+        
+        guard
+            request.task?.response == nil,
+            let url = request.request?.url?.absoluteString
+            else {
+                removeCachedUrlRequest(url: request.request?.url?.absoluteString)
+                completion(false, 0.0) // don't retry
+                return
+        }
+        
+        guard let retryCount = retriedRequests[url] else {
+            retriedRequests[url] = 1
+            completion(true, 1.0) // retry after 1 second
+            return
+        }
+        
+        if retryCount <= 3 {
+            retriedRequests[url] = retryCount + 1
+            completion(true, 1.0) // retry after 1 second
+        } else {
+            removeCachedUrlRequest(url: url)
+            completion(false, 0.0) // don't retry
+        }
+        
+    }
+    
+    private func removeCachedUrlRequest(url: String?) {
+        guard let url = url else {
+            return
+        }
+        retriedRequests.removeValue(forKey: url)
+    }
+    
+}
