@@ -18,5 +18,5 @@ TODO: Add long description of the pod here.
   s.source_files = 'CNNetwork/Classes/**/*'
 
   s.dependency "RxSwift"
-  s.dependency "Alamofire"
+  s.dependency "Alamofire", '4.8.2'
 end
