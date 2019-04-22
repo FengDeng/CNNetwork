@@ -95,7 +95,8 @@ public class CNNetworkManager{
             if str.count > 0{
                 str = "&" + str
             }
-            dataRequest = sessionManager.request(url! + str, method: request.method, parameters: nil, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
+            let u = (url! + str).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            dataRequest = sessionManager.request(u, method: request.method, parameters: nil, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
         }else{
             dataRequest = sessionManager.request(url!, method: request.method, parameters: request.parameters + request.defaultParameters, encoding: request.encoding, headers: request.headers + request.defaultHeaders)
         }
